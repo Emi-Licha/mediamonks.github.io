@@ -1,13 +1,79 @@
+@font-face{
+    font-family: "klavika";
+    src: url("assets/font/klavika-regular-webfont.woff") format("woff");
+}
+
 *{
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    font-family: "klavika";
+    color: white;
+    }
+body{
+    background: black;
 }
+p{
+    font-family: "klavika";
+    background: transparent;
+    color: white;
+    position: absolute;
+    top: 25%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    transform: translateY(50%);
+    overflow: hidden;
+    display: inline-block;
+
+    animation: enter 1.5s ease-in;}
+        @keyframes enter{ 
+            0%{
+                right: 1500px;
+            }
+   
+            100%{
+                right: 0;
+            }
+            
+        }
+
+
 .container{
     height: auto;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    display: none;
 }
+#monk {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    filter: drop-shadow(0 -0.5mm 0.5mm rgb(255, 255, 255));
+    transform: translateY(0px);
+    animation: float 2s ease-in-out infinite;
+}
+    @keyframes float{
+        0%{
+            transform: translateY(0px);
+        }
+        50%{
+            transform: translateY(-40px);
+            filter: drop-shadow(0 -0.5mm 1.5mm rgb(255, 255, 255));
+        }
+        100%{
+            transform: translateY(0px);
+        }
+    }
 .carousel{
     width: 100%;
     height: 100%;
@@ -20,8 +86,6 @@
 }
 .slider{
     display: flex;
-    background-image: url(img/background.jpg);
-    background-size: contain;
     height: 625px;
     width: 1000%;
     margin: 0;
@@ -29,6 +93,11 @@
     flex-shrink: 0;
     transition: all 0.5s;
     overflow: hidden;
+}
+.slider img{
+    
+    height: 100%;
+    
 }
 .slider section{
     flex-basis: 100%;
@@ -40,15 +109,99 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: black;
 }
 .arrow{
     position: absolute;
     top: 10px;
     cursor: pointer;
 }
-#arrowprev{
+.left, .right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .arrow i {
+    font-size: 70px;
+    -webkit-user-select: none;
+    color: white;
+  }
+  .left {
     left: 10px;
-}
-#arrownext{
+  }
+  .right {
     right: 10px;
-}
+  }
+  .footer{
+      position: fixed;
+      bottom: 3%;
+      text-align: center;
+      font-size: 25px;
+      text-transform: uppercase;
+      line-height: 0.8em;
+      display: none;
+  }
+ #showOne{
+    position: absolute;
+    text-decoration: underline;
+    top: 2%;
+    left: 1.5%;
+    display: none;
+    font-size: 37px;
+    font-weight: lighter;
+    display: none;
+ }
+ #showTwo{
+    position: absolute;
+    text-decoration: underline;
+    top: 50%;
+    left: 1.5%;
+    display: none;
+    font-size: 37px;
+    font-weight: lighter;
+ }
+ h1{
+     position: absolute;
+     top: 2%;
+     display: flex;
+     text-decoration: underline;
+     font-size: 37px;
+     font-weight: lighter;
+     padding-left: 2.3%;
+ }
+ section{
+     display: flex;
+     flex-direction: column;
+ }
+ #monastery{
+     text-align: right;
+     margin-left: 20%;
+     margin-bottom: 40%;
+ }
+ #arrownext, #arrowprev{
+     display: none;
+ }
+
+ .footer svg{
+     fill: white;
+     position: fixed;
+     right: 3%;
+     bottom: 3%;
+ }
+
+ .footer ul{
+     list-style: none;
+     position: fixed;
+     display: flex;
+     flex-direction: row;
+     bottom: 5%;
+     left: 3%;
+ }
+ .footer ul li{
+     border: 1.5px dotted white;
+     cursor: pointer;
+     width: 23px;
+     font-size: 16px;
+     font-weight: lighter;
+ }
