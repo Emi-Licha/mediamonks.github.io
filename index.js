@@ -1,74 +1,106 @@
 const SECTIONS = 8;
 const TRANSLATION_PER_SECTION = 5.95;
 const arrowLeft = document.querySelector("#arrowprev");
-const arrowRight = document.querySelector("#arrownext")
-var position = 1;
+const arrowRight = document.querySelector("#arrownext");
+const sliderImages = document.querySelector(".slider");
+const texts = document.getElementById("texts").children;
+const indicatorParents = document.querySelector(".footer ul");
+let first = false;
+var position = 0;
+
+updateTexts();
 
 arrowLeft.addEventListener("click", function() {
   slideLeft();
+  updateTexts();
 });
 
 arrowRight.addEventListener("click", function(){
-  showUp();
   slideRight();
+  updateTexts();
 });
 
 window.setTimeout(function() {
   let container = document.querySelector(".container");
-  let monk = document.querySelector("#monk");
-  let patience = document.querySelector("#patience");
+  let loading = document.querySelector("#loading");
   let footer = document.querySelector(".footer");
-  let showOne = document.querySelector("#showOne");
-  let arrowprev = document.querySelector("#arrowprev");
-  let arrownext = document.querySelector("#arrownext");
-  arrowprev.style.display = "unset";
-  arrownext.style.display = "unset";
-  showOne.style.display = "unset";
   footer.style.display = "unset";
-  patience.style.display = "none";
   container.style.display = "unset";
-  monk.style.display = "none";
-}, 5000)
+  loading.style.display = "none";
+}, 3000)
 
 
 function updateTranslation(translation) {
-  let sliderImages = document.querySelector(".slider");
-  sliderImages.style.transform = "translate(-"+ translation +"%)";
+
+  sliderImages.style.transform = "translate("+ (translation) * -5.95 +"%)";
 }
+
+//Selector
+document.querySelectorAll(".footer ul li").forEach(function(indicator, ind){
+  indicator.addEventListener("click", function(){
+    position = ind;
+    document.querySelector(".footer .selected").classList.remove("selected");
+    indicator.classList.add("selected");
+    updateTranslation(ind);
+    updateTexts(ind);
+  })
+})
 
 // Show prev
 function slideLeft() {
-  
+  arrowRight.style.display = "unset";
+  if (position == 0) {
+    return;
+  } else if(position == 7 && first == true){
+    
+    first = false;
+    position++; 
+  }
+  document.querySelector(".footer .selected").classList.remove("selected");
+  position--;
+  indicatorParents.children[position].classList.add("selected")
+
+  updateTranslation(position);
   if (position == 0) {
     arrowLeft.style.display = "none";
-    return;
   }
-
-  position--;
-  updateTranslation(position * TRANSLATION_PER_SECTION);
 }
 
 // Show next
 function slideRight() {
-  const arrowLeft = document.querySelector("#arrowprev");
-  const arrowRight = document.querySelector("#arrownext");
   arrowLeft.style.display = "unset";
-  if (position == SECTIONS) {
-    
-    arrowRight.style.display = "none";
+  if (position == SECTIONS) {   
     return;
+  } else if(position == 7 && first == false){
+    texts[7].style.opacity = "0";
+    texts[8].style.opacity = "1";
+    first = true;
+    position--;
+  } else if(position==8){
+    texts[8].style.opacity = "0";
   }
-
+  document.querySelector(".footer .selected").classList.remove("selected");
   position++;
-  updateTranslation(position * TRANSLATION_PER_SECTION)
-}
-const showTwo = document.querySelector("#showTwo");
-function showUp(){
-  if(position == 1){
-    const showTwo = document.querySelector("#showTwo");
-    showTwo.style.display="unset";
-
-  } else{
-    showTwo.style.display="none";
+  indicatorParents.children[position].classList.add("selected")
+  updateTranslation(position)
+  if (position == SECTIONS) {   
+    arrowRight.style.display = "none";
   }
-};
+}
+
+
+function updateTexts() {
+  console.log(position)
+  for(let i = 0; i < 9; i++){
+    if (position == i) {
+      texts[i].style.opacity = "1";
+      texts[8].style.opacity = "0";
+    } else if(position == 7 && first == true){
+      texts[7].style.opacity = "0";
+      texts[8].style.opacity = "1";
+    } else{
+      texts[i].style.opacity = "0";
+    }
+  }
+
+}
