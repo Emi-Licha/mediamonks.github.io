@@ -86,12 +86,6 @@ body{
     opacity: 0.4;
     z-index: 0;
 }
-#mail{
-    
-
-    fill:white;
-    color: white;
-}
 #twitter{
     padding-top: 5px;
 }
@@ -112,12 +106,13 @@ body{
     margin: 0;
     padding: 0;
     flex-shrink: 0;
-    transition: all 0.5s;
+    transition: all 1.5s;
     overflow: hidden;
 }
 #background{
-    
-    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    max-height: 100%;
     z-index: 0;
     
 }
@@ -137,7 +132,6 @@ body{
     align-items: center;
     justify-content: center;
     background-color: black;
-    transition: all 3s;
 }
 .arrow{
     position: absolute;
@@ -185,17 +179,17 @@ body{
  #showTwo{
     position: absolute;
     text-decoration: underline;
-    top: 50%;
-    left: 1.5%;
+    top: 40%;
+    left: 5%;
     font-size: 37px;
     font-weight: lighter;
-    top: 3%;
+
     z-index: 1;
     opacity: 0;
     transition: opacity 1s;
  }
  #showThree{
-     top: 30%;
+     top: 40%;
      left: 5%;
      transition: opacity 1s;
      opacity: 0;
@@ -204,37 +198,43 @@ body{
     top: 40%;
     right: 5%;
     transition: opacity 1s;
-    opacity: 0;     
+    opacity: 0;
+    text-align: right;     
  }
  #showFive{
+    top: 40%;
+    right: 5%;
+    transition: opacity 1s;
+    opacity: 0; 
+    text-align: right;      
+ }
+ #showSix{
     top: 35%;
     right: 5%;
     transition: opacity 1s;
-    opacity: 0;     
- }
- #showSix{
-    top: 27%;
-    right: 5%;
-    transition: opacity 1s;
-    opacity: 0;     
+    opacity: 0;
+    text-align: right;     
  }
  #showSeven{
-    top: 30%;
+    top: 40%;
     left: 5%;
     transition: opacity 1s;
     opacity: 0;
+    text-align: left;
 }
 #showEight{
-    top: 30%;
+    top: 40%;
     left: 5%;
     transition: opacity 1s;
     opacity: 0;
+    text-align: left;
 }
 #showNine{
-    top: 30%;
-    right: 5%;
+    top: 40%;
+    left: 5%;
     transition: opacity 1s;
     opacity: 0;
+    text-align: left;
 }
  h1{
      position: absolute;
@@ -291,4 +291,7 @@ body{
      height: 100%;
      width: 100%;
      z-index: 1;
+ }
+ #facebook{
+     padding-bottom: 10px;
  }
